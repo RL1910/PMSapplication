@@ -8,7 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -17,13 +16,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @DiscriminatorValue("buyer")
 public class Buyer extends Person{
 	
-	@Min(value=0,message="must be greaterthan zero")
+	@NotNull	
 	@Column
-	private double      minimumPrice;
+	private double      minPrice;
 	
 	@NotNull
 	@Column
-	private double      maximumPrice;
+	private double      maxPrice;
 	
 	@Column
 	private LocalDate   appointmentDate;
@@ -39,22 +38,20 @@ public class Buyer extends Person{
 	private Preference preferences;
 
 	
-	
-	
-	public double getMinimumPrice() {
-		return minimumPrice;
+	public double getMinPrice() {
+		return minPrice;
 	}
 	
-	public void setMinimumPrice(double minPrice) {
-		this.minimumPrice = minPrice;
+	public void setMinPrice(double minPrice) {
+		this.minPrice = minPrice;
 	}
 	
-	public double getMaximumPrice() {
-		return maximumPrice;
+	public double getMaxPrice() {
+		return maxPrice;
 	}
 	
-	public void setMaximumPrice(double maxPrice) {
-		this.maximumPrice = maxPrice;
+	public void setMaxPrice(double maxPrice) {
+		this.maxPrice = maxPrice;
 	}
 	
 	public LocalDate getAppointmentDate() {
@@ -92,7 +89,7 @@ public class Buyer extends Person{
 	@Override
 	public String toString() {
 		
-		return "Buyer [minimumPrice=" + minimumPrice + ", maximumPrice=" + maximumPrice + ", appointmentDate=" + appointmentDate
+		return "Buyer [minPrice=" + minPrice + ", maxPrice=" + maxPrice + ", appointmentDate=" + appointmentDate
 				+ ", property=" + property + ", appointmentTime=" + appointmentTime + ", preferences=" + preferences
 				+ "]";
 		
